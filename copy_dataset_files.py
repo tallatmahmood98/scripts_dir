@@ -9,8 +9,6 @@ CATALOG_POD = os.popen("kubectl get pods \
 os.system(f"kubectl \
           cp {source_name} development/{CATALOG_POD}:{destination_name}\
           -c catalog")
-# os.system(f"kubectl exec -it {CATALOG_POD} -c catalog --bash \
-#           -c 'rm -r /catalog/cache/'")
 
 os.system(f"kubectl exec -it {CATALOG_POD} -c catalog -- bash \
           -c 'rm /catalog/cache/* && cd catalog && python generate_cache.py'")
